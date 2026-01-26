@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robo Arena | Professional Combat Robotics</title>
+    <meta name="description" content="Premium combat robots and precision engineering parts for professional competitors.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="main-header">
+        <div class="container header-inner">
+            <a href="#" class="logo">
+                ROBO<span class="text-accent">ARENA</span>.
+            </a>
+            
+            <nav class="desktop-nav">
+                <a href="#robots" class="nav-link">Robots</a>
+                <a href="#parts" class="nav-link">Parts</a>
+                <a href="#engineers" class="nav-link">Engineers</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="shop.html" class="btn btn-primary">Store Access</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="section hero-section">
+            <!-- Ambient Background Shapes -->
+            <div class="hero-bg-shape shape-1"></div>
+            <div class="hero-bg-shape shape-2"></div>
+
+            <div class="container grid-2 hero-grid">
+                <div class="hero-content">
+                    <span class="section-subtitle fade-in-up" style="animation-delay: 0.1s;">Combat Grade Engineering</span>
+                    <h1 class="hero-title fade-in-up" style="animation-delay: 0.2s;">
+                        Dominate the <br>
+                        <span class="text-accent text-gradient">Arena.</span>
+                    </h1>
+                    <p class="hero-desc fade-in-up" style="animation-delay: 0.3s;">
+                        Precision-engineered combat robots and high-torque propulsion systems for professional robot combat leagues.
+                    </p>
+                    <div class="hero-actions fade-in-up" style="animation-delay: 0.4s;">
+                        <a href="shop.html" class="btn btn-primary">Shop Robots</a>
+                        <a href="shop.html" class="btn btn-secondary">Browse Parts</a>
+                    </div>
+                    
+                    <!-- Trust Indicators -->
+                    <div class="hero-stats fade-in-up" style="animation-delay: 0.5s; display: flex; gap: 2rem; margin-top: 3rem;">
+                        <div>
+                            <span class="stat-value text-accent" style="font-family: var(--font-tech); font-size: 1.5rem; display: block;">2.4k+</span>
+                            <span class="stat-label" style="font-size: 0.8rem; color: var(--text-muted);">Parts Shipped</span>
+                        </div>
+                        <div>
+                            <span class="stat-value text-accent" style="font-family: var(--font-tech); font-size: 1.5rem; display: block;">150+</span>
+                            <span class="stat-label" style="font-size: 0.8rem; color: var(--text-muted);">Tournaments Won</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-visual fade-in-up" style="animation-delay: 0.5s;">
+                    <div class="robot-container">
+                        <img src="assets/hero-robot.png" alt="Heavyweight Combat Robot" class="hero-robot-img">
+                        
+                        <!-- HUD Decorative Elements -->
+                        <div class="hud-badge badge-right">
+                            <span class="hud-label">ARMOR</span>
+                            <span class="hud-value">Ti-6Al-4V</span>
+                        </div>
+                        <div class="hud-badge badge-left">
+                            <span class="hud-label">STATUS</span>
+                            <span class="hud-value text-accent">ONLINE</span>
+                        </div>
+                        <div class="hud-circle"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Categories -->
+        <section id="parts" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Systems</span>
+                    <h2 class="section-title">Upgrade Your Arsenal</h2>
+                </div>
+                
+                <div class="grid-3 category-grid">
+                    <!-- Card 1 -->
+                    <div class="card category-card">
+                        <div class="card-image">
+                            <img src="assets/motor.png" alt="Brushless Motors">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Propulsion</h3>
+                            <p class="card-desc">High-torque brushless motors designed for kinetic impact.</p>
+                            <a href="#" class="link-arrow">View Motors <i data-feather="arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="card category-card">
+                        <div class="card-image">
+                            <img src="assets/esc.png" alt="Speed Controllers">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Control Systems</h3>
+                            <p class="card-desc">Rapid-response ESCs with telemetry and current limiting.</p>
+                            <a href="#" class="link-arrow">View ESCs <i data-feather="arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="card category-card">
+                        <div class="card-image">
+                            <img src="assets/frame.png" alt="Titanium Frames">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Chassis & Armor</h3>
+                            <p class="card-desc">CNC-machined Titanium and AR500 steel frame components.</p>
+                            <a href="#" class="link-arrow">View Frames <i data-feather="arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Products -->
+        <section id="featured" class="section bg-surface">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Battle Tested</span>
+                    <h2 class="section-title">New Arrivals</h2>
+                    <a href="#" class="btn btn-secondary btn-sm">View All</a>
+                </div>
+
+                <div class="grid-3 product-grid">
+                    <!-- Product 1 -->
+                    <div class="card product-card">
+                        <div class="product-badge">New</div>
+                        <div class="product-image">
+                            <img src="assets/motor.png" alt="X-2200 Motor"> <!-- Reusing asset for demo -->
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Magnum X-2200</h3>
+                            <div class="product-specs">
+                                <span class="tech-spec">60V</span>
+                                <span class="tech-spec">4.5kW</span>
+                            </div>
+                            <div class="product-footer">
+                                <span class="price">$149.00</span>
+                                <button class="btn-icon"><i data-feather="shopping-cart"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 2 -->
+                    <div class="card product-card">
+                        <div class="product-image">
+                            <img src="assets/esc.png" alt="Vector 300A ESC"> <!-- Reusing asset -->
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Vector 300A ESC</h3>
+                            <div class="product-specs">
+                                <span class="tech-spec">300A Burst</span>
+                                <span class="tech-spec">12S LiPo</span>
+                            </div>
+                            <div class="product-footer">
+                                <span class="price">$229.00</span>
+                                <button class="btn-icon"><i data-feather="shopping-cart"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                     <!-- Product 3 -->
+                     <div class="card product-card">
+                        <div class="product-image">
+                            <img src="assets/frame.png" alt="Titanium Wedges"> <!-- Reusing asset -->
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Ti-6Al-4V Wedges</h3>
+                            <div class="product-specs">
+                                <span class="tech-spec">Grade 5</span>
+                                <span class="tech-spec">CNC</span>
+                            </div>
+                            <div class="product-footer">
+                                <span class="price">$89.00</span>
+                                <button class="btn-icon"><i data-feather="shopping-cart"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us -->
+        <section id="why-us" class="section section-dark-grid">
+            <div class="container">
+                <div class="grid-2 why-grid">
+                    <div class="info-content">
+                        <span class="section-subtitle">Why RoboArena</span>
+                        <h2 class="section-title">Engineered for Victory</h2>
+                        <ul class="feature-list">
+                            <li class="feature-item">
+                                <div class="feature-icon-wrapper">
+                                    <i data-feather="shield"></i>
+                                </div>
+                                <div class="feature-text">
+                                    <h4>Combat Proven Durability</h4>
+                                    <p>AR500 steel chassis tested against kinetic spinners and hammer blows.</p>
+                                </div>
+                            </li>
+                            <li class="feature-item">
+                                <div class="feature-icon-wrapper">
+                                    <i data-feather="zap"></i>
+                                </div>
+                                <div class="feature-text">
+                                    <h4>High-Votage Performance</h4>
+                                    <p>Systems rated for 12S-16S LiPo power with burst currents up to 400A.</p>
+                                </div>
+                            </li>
+                            <li class="feature-item">
+                                <div class="feature-icon-wrapper">
+                                    <i data-feather="box"></i>
+                                </div>
+                                <div class="feature-text">
+                                    <h4>Modular Architecture</h4>
+                                    <p>Standardized mounting patterns (NEMA 23/34) for rapid pit repairs.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-visual">
+                         <div class="hologram-container">
+                             <img src="assets/blueprint.png" alt="Robot Schematic" class="hologram-image">
+                             <div class="hologram-glow"></div>
+                             <!-- Decorative Data overlay -->
+                             <div class="data-point p1"></div>
+                             <div class="data-point p2"></div>
+                             <div class="data-point p3"></div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="section cta-section text-center">
+            <div class="container">
+                <h2 class="hero-title" style="font-size: 3rem;">Ready to Build?</h2>
+                <p class="hero-desc" style="margin: 2rem auto;">Join the league of professional builders today.</p>
+                <a href="#shop" class="btn btn-primary btn-lg">Enter the Arena</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer section">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">ROBO<span class="text-accent">ARENA</span>.</a>
+                    <p>Premium components for combat robotics.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Shop</h4>
+                    <a href="#">Robots</a>
+                    <a href="#">Motors</a>
+                    <a href="#">Electronics</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <a href="#">Documentation</a>
+                    <a href="#">Shipping</a>
+                    <a href="#">Returns</a>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Stay Updated</h4>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span class="text-mono">© 2026 ROBO ARENA SYSTEMS.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>

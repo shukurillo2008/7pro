@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magnum X-2200 | Robo Arena</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+
+    <!-- Header (Same as Index) -->
+    <header id="main-header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">
+                ROBO<span class="text-accent">ARENA</span>.
+            </a>
+            
+            <nav class="desktop-nav">
+                <a href="index.html#robots" class="nav-link">Robots</a>
+                <a href="index.html#parts" class="nav-link">Parts</a>
+                <a href="index.html#engineers" class="nav-link">Engineers</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="shop.html" class="btn btn-primary">Store Access</a>
+            </div>
+        </div>
+    </header>
+
+    <main style="padding-top: 100px;">
+        
+        <!-- Breadcrumb -->
+        <div class="container" style="margin-bottom: var(--space-4);">
+            <div class="breadcrumb" style="color: var(--text-muted); font-size: 0.9rem;">
+                <a href="index.html">Home</a> / <a href="shop.html">Shop</a> / <a href="shop.html">Motors</a> / <span style="color: var(--text-main);">Magnum X-2200</span>
+            </div>
+        </div>
+
+        <!-- Product Core Info -->
+        <section class="section" style="padding-top: 0;">
+            <div class="container">
+                <div class="product-detail-grid">
+                    
+                    <!-- Gallery -->
+                    <div class="product-gallery">
+                        <div class="main-image-container">
+                             <img src="assets/motor.png" id="main-product-img" alt="Magnum X-2200">
+                        </div>
+                        <div class="thumbnail-list">
+                            <div class="thumbnail active" onclick="changeImage('assets/motor.png', this)">
+                                <img src="assets/motor.png" alt="View 1">
+                            </div>
+                            <div class="thumbnail" onclick="changeImage('assets/hero-robot.png', this)">
+                                <img src="assets/hero-robot.png" alt="View 2 (Context)">
+                            </div>
+                            <div class="thumbnail" onclick="changeImage('assets/blueprint.png', this)">
+                                <img src="assets/blueprint.png" alt="View 3 (Schematic)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Info Panel -->
+                    <div class="product-info-panel">
+                        <div class="badge-wrapper" style="margin-bottom: 1rem;">
+                            <span class="product-badge" style="position: static; display: inline-block;">Best Seller</span>
+                        </div>
+                        <h1 class="product-title-large">Magnum X-2200 Brushless Motor</h1>
+                        <div class="product-meta">
+                            <span class="text-mono text-accent" style="font-size: 0.9rem;">SKU: MTR-X2200-V4</span>
+                            <div class="rating">
+                                <i data-feather="star" style="fill: var(--accent-primary); color: var(--accent-primary); width: 16px;"></i>
+                                <i data-feather="star" style="fill: var(--accent-primary); color: var(--accent-primary); width: 16px;"></i>
+                                <i data-feather="star" style="fill: var(--accent-primary); color: var(--accent-primary); width: 16px;"></i>
+                                <i data-feather="star" style="fill: var(--accent-primary); color: var(--accent-primary); width: 16px;"></i>
+                                <i data-feather="star" style="fill: var(--accent-primary); color: var(--accent-primary); width: 16px;"></i>
+                                <span class="text-muted" style="margin-left: 0.5rem; font-size: 0.9rem;">(12 Reviews)</span>
+                            </div>
+                        </div>
+                        
+                        <div class="product-price-large">
+                            $149.00 <span class="text-muted" style="font-size: 1rem; text-decoration: line-through; margin-left: 0.5rem;">$169.00</span>
+                        </div>
+
+                        <p class="product-short-desc">
+                            The industry standard for 30lb and 60lb combat robots. Featuring N52SH magnets, 0.2mm laminations, and a hardened 8mm titanium shaft. Battle-hardened reliability.
+                        </p>
+
+                        <div class="product-actions">
+                            <div class="quantity-selector">
+                                <button class="qty-btn" onclick="updateQty(-1)">-</button>
+                                <input type="number" id="qty-input" value="1" min="1" max="10">
+                                <button class="qty-btn" onclick="updateQty(1)">+</button>
+                            </div>
+                            <button class="btn btn-primary btn-lg" style="flex: 1;">Add to Cart</button>
+
+                        </div>
+                        
+                        <div class="stock-status">
+                            <span class="dot" style="background: #00ff88; box-shadow: 0 0 5px #00ff88;"></span> 
+                            In Stock - Ships today
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Tabs -->
+        <section class="section bg-surface">
+            <div class="container">
+                <div class="tabs-container">
+                    <div class="tabs-header">
+                        <button class="tab-btn active" onclick="switchTab('specs')">Specifications</button>
+                        <button class="tab-btn" onclick="switchTab('desc')">Description</button>
+                        <button class="tab-btn" onclick="switchTab('reviews')">Reviews</button>
+                    </div>
+                    
+                    <div class="tab-content" id="specs">
+                        <div class="specs-grid">
+                            <div class="spec-row">
+                                <span class="spec-label">KV Rating</span>
+                                <span class="spec-value">380KV</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Max Voltage</span>
+                                <span class="spec-value">60V (14S LiPo)</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Max Current</span>
+                                <span class="spec-value">120A Continuous</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Shaft Diameter</span>
+                                <span class="spec-value">8mm Titanium</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Weight</span>
+                                <span class="spec-value">450g</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content hidden" id="desc">
+                        <p>Designed specifically for the rigorous demands of combat robotics, the Magnum X-2200 eliminates common failure points found in standard hobby motors. The can is reinforced with a 1mm steel ring to prevent deformation from impacts. The magnets are glued with high-temp epoxy and retained by a kevlar wrap.</p>
+                        <p>Perfect for weapon drives or heavy-duty drivetrains in middleweight bots.</p>
+                    </div>
+
+                    <div class="tab-content hidden" id="reviews">
+                        <p>Reviews coming soon.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Related Projects -->
+         <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" style="font-size: 2rem;">Related Components</h2>
+                </div>
+                 <div class="grid-3 product-grid">
+                        <!-- Product 2 (Reused) -->
+                        <div class="card product-card">
+                             <div class="product-image">
+                                <img src="assets/esc.png" alt="Vector 300A ESC">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Vector 300A ESC</h3>
+                                <div class="product-specs">
+                                    <span class="tech-spec">300A Burst</span>
+                                    <span class="tech-spec">12S LiPo</span>
+                                </div>
+                                <div class="product-footer">
+                                    <span class="price">$229.00</span>
+                                    <button class="btn-icon"><i data-feather="shopping-cart"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Product 3 (Reused) -->
+                         <div class="card product-card">
+                             <div class="product-image">
+                                <img src="assets/frame.png" alt="Titanium Wedges">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Ti-6Al-4V Wedges</h3>
+                                <div class="product-specs">
+                                    <span class="tech-spec">Grade 5</span>
+                                    <span class="tech-spec">CNC</span>
+                                </div>
+                                <div class="product-footer">
+                                    <span class="price">$89.00</span>
+                                    <button class="btn-icon"><i data-feather="shopping-cart"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                         <!-- Product 4 (Reused) -->
+                        <div class="card product-card">
+                             <div class="product-image">
+                                <img src="assets/motor.png" alt="Magnum S-1000">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Magnum S-1000</h3>
+                                <div class="product-specs">
+                                    <span class="tech-spec">24V</span>
+                                    <span class="tech-spec">1.2kW</span>
+                                </div>
+                                <div class="product-footer">
+                                    <span class="price">$89.00</span>
+                                    <button class="btn-icon"><i data-feather="shopping-cart"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                 </div>
+            </div>
+         </section>
+
+    </main>
+
+    <footer class="section" style="border-top: 1px solid var(--border-subtle); background: var(--bg-surface);">
+        <div class="container text-center">
+             <span class="text-mono" style="font-size: var(--text-xs); color: var(--text-muted);">© 2026 ROBO ARENA SYSTEMS.</span>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>

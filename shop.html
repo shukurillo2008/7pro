@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop | Robo Arena</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+
+    <!-- Header (Same as Index) -->
+    <header id="main-header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">
+                ROBO<span class="text-accent">ARENA</span>.
+            </a>
+            
+            <nav class="desktop-nav">
+                <a href="index.html#robots" class="nav-link">Robots</a>
+                <a href="index.html#parts" class="nav-link">Parts</a>
+                <a href="index.html#engineers" class="nav-link">Engineers</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="shop.html" class="btn btn-primary">Store Access</a>
+            </div>
+        </div>
+    </header>
+
+    <main style="padding-top: 100px;">
+        <!-- Page Header -->
+        <section class="shop-header section bg-surface" style="padding: 3rem 0; border-bottom: 1px solid var(--border-subtle);">
+            <div class="container">
+                <h1 class="section-title" style="margin-bottom: 0.5rem;">Arena Store</h1>
+                <p>Professional grade components for combat robotics.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container" style="display: grid; grid-template-columns: 250px 1fr; gap: var(--space-8);">
+                
+                <!-- Sidebar Filters -->
+                <aside class="shop-sidebar">
+                    <div class="filter-group">
+                        <h4 class="filter-title">Categories</h4>
+                        <ul class="filter-list">
+                            <li><a href="#" class="filter-link active"><i data-feather="grid"></i> All Products</a></li>
+                            <li><a href="#" class="filter-link"><i data-feather="cpu"></i> Motors</a></li>
+                            <li><a href="#" class="filter-link"><i data-feather="activity"></i> ESCs</a></li>
+                            <li><a href="#" class="filter-link"><i data-feather="layers"></i> Frames & Armor</a></li>
+                            <li><a href="#" class="filter-link"><i data-feather="battery-charging"></i> Batteries</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4 class="filter-title">Price Range</h4>
+                        <div class="price-slider-container">
+                            <div class="slider-track"></div>
+                            <input type="range" min="0" max="2500" value="0" id="slider-1" oninput="slideOne()">
+                            <input type="range" min="0" max="2500" value="1500" id="slider-2" oninput="slideTwo()">
+                            
+                            <div class="range-values">
+                                <span class="text-mono" id="range1">$0</span>
+                                <span class="text-mono" id="range2">$1500</span>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Product Grid -->
+                <div class="shop-grid">
+                    <div class="toolbar" style="display: flex; justify-content: space-between; margin-bottom: var(--space-4); align-items: center;">
+                        <span class="text-muted text-sm">Showing 6 results</span>
+                        <div class="sort-dropdown">
+                            <select style="background: var(--bg-card); border: 1px solid var(--border-subtle); color: var(--text-main); padding: 0.5rem; border-radius: 4px;">
+                                <option>Sort by: Featured</option>
+                                <option>Price: Low to High</option>
+                                <option>Price: High to Low</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid-3 product-grid">
+                        <!-- Product 1 -->
+                        <div class="card product-card">
+                            <div class="product-badge">Best Seller</div>
+                            <div class="product-image carousel-container" id="carousel-1">
+                                <div class="carousel-track">
+                                    <div class="carousel-slide active"><img src="assets/motor.png" alt="Magnum X-2200 View 1"></div>
+                                    <div class="carousel-slide"><img src="assets/hero-robot.png" alt="Magnum X-2200 View 2"></div>
+                                    <div class="carousel-slide"><img src="assets/esc.png" alt="Magnum X-2200 View 3"></div>
+                                </div>
+                                <button class="carousel-btn prev" onclick="moveCarousel('carousel-1', -1)">&#10094;</button>
+                                <button class="carousel-btn next" onclick="moveCarousel('carousel-1', 1)">&#10095;</button>
+                                <div class="carousel-dots">
+                                    <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title"><a href="product-detail.html">Magnum X-2200</a></h3>
+                                <div class="product-specs">
+                                    <span class="tech-spec">60V</span>
+                                    <span class="tech-spec">4.5kW</span>
+                                </div>
+                                <div class="product-footer">
+                                    <span class="price">$149.00</span>
+                                    <a href="product-detail.html" class="btn-icon"><i data-feather="shopping-cart"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product 2 -->
+                        <div class="card product-card">
+                            <div class="product-image carousel-container" id="carousel-2">
+                                <div class="carousel-track">
+                                    <div class="carousel-slide active"><img src="assets/esc.png" alt="Vector 300A View 1"></div>
+                                    <div class="carousel-slide"><img src="assets/motor.png" alt="Vector 300A View 2"></div>
+                                </div>
+                                <button class="carousel-btn prev" onclick="moveCarousel('carousel-2', -1)">&#10094;</button>
+                                <button class="carousel-btn next" onclick="moveCarousel('carousel-2', 1)">&#10095;</button>
+                                <div class="carousel-dots">
+                                    <span class="dot active"></span><span class="dot"></span>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Vector 300A ESC</h3>
+                                <div class="product-specs">
+                                    <span class="tech-spec">300A Burst</span>
+                                    <span class="tech-spec">12S LiPo</span>
+                                </div>
+                                <div class="product-footer">
+                                    <span class="price">$229.00</span>
+                                    <button class="btn-icon"><i data-feather="shopping-cart"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                         <!-- Product 3 -->
+                         <div class="card product-card">
+                             <div class="product-image carousel-container" id="carousel-3">
+                                <div class="carousel-track">
+                                    <div class="carousel-slide active"><img src="assets/frame.png" alt="Titanium Wedges View 1"></div>
+                                    <div class="carousel-slide"><img src="assets/hero-robot.png" alt="Titanium Wedges View 2"></div>
+                                </div>
+                                <button class="carousel-btn prev" onclick="moveCarousel('carousel-3', -1)">&#10094;</button>
+                                <button class="carousel-btn next" onclick="moveCarousel('carousel-3', 1)">&#10095;</button>
+                                <div class="carousel-dots">
+                                    <span class="dot active"></span><span class="dot"></span>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Ti-6Al-4V Wedges</h3>
+                                <div class="product-specs">
+                                    <span class="tech-spec">Grade 5</span>
+                                    <span class="tech-spec">CNC</span>
+                                </div>
+                                <div class="product-footer">
+                                    <span class="price">$89.00</span>
+                                    <button class="btn-icon"><i data-feather="shopping-cart"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product 4 -->
+                        <div class="card product-card">
+                             <div class="product-image carousel-container" id="carousel-4">
+                                <div class="carousel-track">
+                                    <div class="carousel-slide active"><img src="assets/motor.png" alt="Magnum S-1000 View 1"></div>
+                                    <div class="carousel-slide"><img src="assets/esc.png" alt="Magnum S-1000 View 2"></div>
+                                </div>
+                                <button class="carousel-btn prev" onclick="moveCarousel('carousel-4', -1)">&#10094;</button>
+                                <button class="carousel-btn next" onclick="moveCarousel('carousel-4', 1)">&#10095;</button>
+                                <div class="carousel-dots">
+                                    <span class="dot active"></span><span class="dot"></span>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Magnum S-1000</h3>
+                                <div class="product-specs">
+                                    <span class="tech-spec">24V</span>
+                                    <span class="tech-spec">1.2kW</span>
+                                </div>
+                                <div class="product-footer">
+                                    <span class="price">$89.00</span>
+                                    <button class="btn-icon"><i data-feather="shopping-cart"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                         <!-- Product 5 -->
+                         <div class="card product-card">
+                             <div class="product-image carousel-container" id="carousel-5">
+                                <div class="carousel-track">
+                                    <div class="carousel-slide active"><img src="assets/frame.png" alt="Armor Plate View 1"></div>
+                                    <div class="carousel-slide"><img src="assets/hero-robot.png" alt="Armor Plate View 2"></div>
+                                </div>
+                                <button class="carousel-btn prev" onclick="moveCarousel('carousel-5', -1)">&#10094;</button>
+                                <button class="carousel-btn next" onclick="moveCarousel('carousel-5', 1)">&#10095;</button>
+                                <div class="carousel-dots">
+                                    <span class="dot active"></span><span class="dot"></span>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">AR500 Armor Plate</h3>
+                                <div class="product-specs">
+                                    <span class="tech-spec">6mm</span>
+                                    <span class="tech-spec">Hardened</span>
+                                </div>
+                                <div class="product-footer">
+                                    <span class="price">$45.00</span>
+                                    <button class="btn-icon"><i data-feather="shopping-cart"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product 6 -->
+                        <div class="card product-card">
+                            <div class="product-badge">New</div>
+                             <div class="product-image carousel-container" id="carousel-6">
+                                <div class="carousel-track">
+                                    <div class="carousel-slide active"><img src="assets/esc.png" alt="Vector Mini View 1"></div>
+                                    <div class="carousel-slide"><img src="assets/motor.png" alt="Vector Mini View 2"></div>
+                                </div>
+                                <button class="carousel-btn prev" onclick="moveCarousel('carousel-6', -1)">&#10094;</button>
+                                <button class="carousel-btn next" onclick="moveCarousel('carousel-6', 1)">&#10095;</button>
+                                <div class="carousel-dots">
+                                    <span class="dot active"></span><span class="dot"></span>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Vector Mini 50A</h3>
+                                <div class="product-specs">
+                                    <span class="tech-spec">50A</span>
+                                    <span class="tech-spec">4S LiPo</span>
+                                </div>
+                                <div class="product-footer">
+                                    <span class="price">$59.00</span>
+                                    <button class="btn-icon"><i data-feather="shopping-cart"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div style="margin-top: var(--space-12); display: flex; justify-content: center; gap: 0.5rem;">
+                        <button class="btn btn-secondary btn-sm" disabled>Previous</button>
+                        <button class="btn btn-primary btn-sm">1</button>
+                        <button class="btn btn-secondary btn-sm">2</button>
+                        <button class="btn btn-secondary btn-sm">3</button>
+                        <button class="btn btn-secondary btn-sm">Next</button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="section" style="border-top: 1px solid var(--border-subtle); background: var(--bg-surface);">
+        <div class="container text-center">
+             <span class="text-mono" style="font-size: var(--text-xs); color: var(--text-muted);">© 2026 ROBO ARENA SYSTEMS.</span>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>
