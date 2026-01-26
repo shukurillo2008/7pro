@@ -73,7 +73,7 @@ ul { list-style: none; }
 .bg-surface { background-color: var(--bg-surface); }
 .text-center { text-align: center; }
 
-/* Header */
+    /* Header */
 #main-header {
   position: fixed;
   width: 100%;
@@ -82,8 +82,19 @@ ul { list-style: none; }
   padding: var(--space-4) 0;
   border-bottom: 1px solid rgba(255,255,255,0.05);
   background: rgba(10, 10, 12, 0.8);
+  -webkit-backdrop-filter: blur(12px); /* Safari Fix */
   backdrop-filter: blur(12px);
   transition: padding 0.3s;
+}
+
+/* ... existing code ... */
+
+.text-gradient {
+    background: linear-gradient(135deg, #fff 0%, var(--accent-primary) 100%);
+    -webkit-background-clip: text; /* Safari Fix */
+    background-clip: text;
+    -webkit-text-fill-color: transparent; /* Safari Fix */
+    color: transparent;
 }
 
 .header-inner {
@@ -244,6 +255,13 @@ ul { list-style: none; }
   gap: var(--space-8);
 }
 
+/* Grid 2 */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: var(--space-8);
+}
+
 /* Cards */
 .card {
   background: var(--bg-card);
@@ -252,6 +270,7 @@ ul { list-style: none; }
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  min-width: 0; /* Safari Grid Fix */
 }
 
 .card:hover {
