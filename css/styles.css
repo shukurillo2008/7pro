@@ -920,6 +920,8 @@ input[type="range"]:active::-webkit-slider-thumb {
     display: flex;
     flex-direction: column;
     gap: var(--space-4);
+    /* Safari Flex Fixes */
+    min-width: 0; 
 }
 
 .main-image-container {
@@ -930,12 +932,23 @@ input[type="range"]:active::-webkit-slider-thumb {
     display: flex;
     align-items: center;
     justify-content: center;
+    
+    /* Safari aspect-ratio fallback mechanism */
+    width: 100%;
     aspect-ratio: 4/3;
+    /* In case aspect-ratio fails in very old versions, min-height helps */
+    min-height: 300px;
+    position: relative;
+    overflow: hidden;
 }
 
+/* Ensure image doesn't overflow or collapse */
 .main-image-container img {
+    max-width: 100%;
     max-height: 100%;
     width: auto;
+    height: auto;
+    object-fit: contain;
     filter: drop-shadow(0 0 20px rgba(0,0,0,0.5));
     transition: opacity 0.3s;
 }
@@ -943,6 +956,8 @@ input[type="range"]:active::-webkit-slider-thumb {
 .thumbnail-list {
     display: flex;
     gap: var(--space-2);
+    /* Safari gap fallback handled by flex wrap usually, but for row: */
+    flex-wrap: wrap; 
 }
 
 .thumbnail {
@@ -954,6 +969,12 @@ input[type="range"]:active::-webkit-slider-thumb {
     padding: var(--space-2);
     cursor: pointer;
     transition: all 0.2s;
+    
+    /* Prevent thumbnail squishing */
+    flex-shrink: 0; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .thumbnail.active, .thumbnail:hover {
@@ -962,8 +983,8 @@ input[type="range"]:active::-webkit-slider-thumb {
 }
 
 .thumbnail img {
-    width: 100%;
-    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
     object-fit: contain;
 }
 
@@ -1142,4 +1163,86 @@ input[type="range"]:active::-webkit-slider-thumb {
     opacity: 0.5;
     cursor: not-allowed;
     pointer-events: none;
+}
+
+/* --- Mobile Optimization --- */
+
+/* Mobile Header */
+@media (max-width: 768px) {
+    .desktop-nav {
+        display: none; /* Simple hide, sidebar toggle would be ideal for v2 */
+    }
+
+    .header-inner {
+        padding: 0 var(--space-4);
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: var(--space-8);
+    }
+    
+    .hero-actions {
+        justify-content: center;
+    }
+    
+    .hero-stats {
+        justify-content: center;
+    }
+    
+    .grid-3, .grid-2 {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Shop Mobile */
+    .shop-grid .toolbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-4);
+    }
+    
+    /* Product Detail Mobile */
+    .product-detail-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .main-image-container {
+        aspect-ratio: 1/1; 
+    }
+    
+    .product-title-large {
+        font-size: 2rem;
+    }
+    
+    .product-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .product-actions {
+        flex-direction: column;
+    }
+    
+    .quantity-selector {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .tabs-header {
+        overflow-x: auto;
+        white-space: nowrap;
+        padding-bottom: 2px;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-8);
+        text-align: center;
+    }
 }
