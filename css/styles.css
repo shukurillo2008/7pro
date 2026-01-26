@@ -280,16 +280,18 @@ ul { list-style: none; }
 
 .card-image {
   background: linear-gradient(to bottom, #1b1b1e, var(--bg-card));
-  padding: var(--space-8);
+  padding: var(--space-4); /* Reduced padding for larger images */
   display: flex;
   align-items: center;
   justify-content: center;
   aspect-ratio: 4/3;
+  width: 100%; /* Explicit width for Safari */
 }
 
 .card-image img {
-  max-height: 100%;
-  width: auto;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
   transition: transform 0.5s ease;
 }
 
