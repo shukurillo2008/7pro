@@ -153,4 +153,10 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.tab-content').forEach(content => content.classList.add('hidden'));
         document.getElementById(tabId).classList.remove('hidden');
     }
+
+    // --- Mobile Filter Logic ---
+    window.toggleFilters = function() {
+        const content = document.getElementById('sidebar-content');
+        content.classList.toggle('active');
+    }
 });
