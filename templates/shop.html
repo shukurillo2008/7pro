@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Shop | Robo Arena{% endblock %}
+{% block meta_description %}Browse professional grade combat robotics components - motors, ESCs, frames, armor, and batteries.{% endblock %}
+
+{% block content %}
+<main style="padding-top: 100px;">
+    <!-- Breadcrumb -->
+    <div class="container" style="margin-bottom: var(--space-4); padding-top: var(--space-4);">
+        <div class="breadcrumb" style="color: var(--text-muted); font-size: 0.9rem;">
+            <a href="{% url 'home' %}">Home</a> / 
+            {% if selected_category %}
+            <a href="{% url 'shop' %}">Shop</a> / <span style="color: var(--text-main);">{{ selected_category.name }}</span>
+            {% else %}
+            <span style="color: var(--text-main);">Shop</span>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <section class="shop-header section bg-surface" style="padding: 3rem 0; border-bottom: 1px solid var(--border-subtle);">
+        <div class="container">
+            <h1 class="section-title" style="margin-bottom: 0.5rem;">
+                {% if selected_category %}{{ selected_category.name }}{% else %}Arena Store{% endif %}
+            </h1>
+            <p>{% if selected_category %}{{ selected_category.description }}{% else %}Professional grade components for combat robotics.{% endif %}</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container" style="display: grid; grid-template-columns: 250px 1fr; gap: var(--space-8);">
+            
+            <!-- Sidebar Filters -->
+            <aside class="shop-sidebar">
+                <!-- Mobile Filter Toggle -->
+                <button class="btn btn-secondary mobile-filter-btn" onclick="toggleFilters()">
+                    <span>Filters</span> <i data-feather="filter"></i>
+                </button>
+
+                <div id="sidebar-content">
+                    <div class="filter-group">
+                        <h4 class="filter-title">Categories</h4>
+                        <ul class="filter-list">
+                            <li><a href="{% url 'shop' %}" class="filter-link {% if not selected_category %}active{% endif %}"><i data-feather="grid"></i> All Products</a></li>
+                            {% for category in categories %}
+                            <li><a href="{% url 'category' category.slug %}" class="filter-link {% if selected_category.slug == category.slug %}active{% endif %}"><i data-feather="{{ category.icon }}"></i> {{ category.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4 class="filter-title">Price Range</h4>
+                        <div class="price-slider-container">
+                            <div class="slider-track"></div>
+                            <input type="range" min="0" max="2500" value="0" id="slider-1" oninput="slideOne()">
+                            <input type="range" min="0" max="2500" value="1500" id="slider-2" oninput="slideTwo()">
+                            
+                            <div class="range-values">
+                                <span class="text-mono" id="range1">$0</span>
+                                <span class="text-mono" id="range2">$1500</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Product Grid -->
+            <div class="shop-grid">
+                <div class="toolbar" style="display: flex; justify-content: space-between; margin-bottom: var(--space-4); align-items: center;">
+                    <span class="text-muted text-sm">Showing {{ products|length }} of {{ total_count }} results</span>
+                    <div class="sort-dropdown">
+                        <select style="background: var(--bg-card); border: 1px solid var(--border-subtle); color: var(--text-main); padding: 0.5rem; border-radius: 4px;" onchange="window.location.href='?sort='+this.value">
+                            <option value="featured" {% if current_sort == 'featured' %}selected{% endif %}>Sort by: Featured</option>
+                            <option value="price_low" {% if current_sort == 'price_low' %}selected{% endif %}>Price: Low to High</option>
+                            <option value="price_high" {% if current_sort == 'price_high' %}selected{% endif %}>Price: High to Low</option>
+                            <option value="newest" {% if current_sort == 'newest' %}selected{% endif %}>Newest First</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid-3 product-grid">
+                    {% for product in products %}
+                    <div class="card product-card">
+                        {% if product.is_bestseller %}
+                        <div class="product-badge">Best Seller</div>
+                        {% elif product.is_new %}
+                        <div class="product-badge">New</div>
+                        {% endif %}
+                        <div class="product-image carousel-container" id="carousel-{{ product.pk }}">
+                            <div class="carousel-track">
+                                {% for image in product.images.all %}
+                                <div class="carousel-slide {% if forloop.first %}active{% endif %}"><img src="{{ image.image.url }}" alt="{{ image.alt_text }}"></div>
+                                {% empty %}
+                                <div class="carousel-slide active"><img src="{% static 'assets/motor.png' %}" alt="{{ product.name }}"></div>
+                                {% endfor %}
+                            </div>
+                            {% if product.images.count > 1 %}
+                            <button class="carousel-btn prev" onclick="moveCarousel('carousel-{{ product.pk }}', -1)">&#10094;</button>
+                            <button class="carousel-btn next" onclick="moveCarousel('carousel-{{ product.pk }}', 1)">&#10095;</button>
+                            <div class="carousel-dots">
+                                {% for image in product.images.all %}
+                                <span class="dot {% if forloop.first %}active{% endif %}"></span>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h3>
+                            <div class="product-specs">
+                                {% for key, value in product.specs.items|slice:":2" %}
+                                <span class="tech-spec">{{ value }}</span>
+                                {% endfor %}
+                            </div>
+                            <div class="product-footer">
+                                <span class="price">${{ product.price }}</span>
+                                <a href="{{ product.get_absolute_url }}" class="btn-icon"><i data-feather="shopping-cart"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p class="text-muted">No products found.</p>
+                    {% endfor %}
+                </div>
+                
+                <!-- Pagination -->
+                {% if products.has_other_pages %}
+                <div style="margin-top: var(--space-12); display: flex; justify-content: center; gap: 0.5rem;">
+                    {% if products.has_previous %}
+                    <a href="?page={{ products.previous_page_number }}{% if selected_category %}&category={{ selected_category.slug }}{% endif %}{% if current_sort %}&sort={{ current_sort }}{% endif %}" class="btn btn-secondary btn-sm">Previous</a>
+                    {% else %}
+                    <button class="btn btn-secondary btn-sm" disabled>Previous</button>
+                    {% endif %}
+                    
+                    {% for num in products.paginator.page_range %}
+                    <a href="?page={{ num }}{% if selected_category %}&category={{ selected_category.slug }}{% endif %}{% if current_sort %}&sort={{ current_sort }}{% endif %}" class="btn {% if products.number == num %}btn-primary{% else %}btn-secondary{% endif %} btn-sm">{{ num }}</a>
+                    {% endfor %}
+                    
+                    {% if products.has_next %}
+                    <a href="?page={{ products.next_page_number }}{% if selected_category %}&category={{ selected_category.slug }}{% endif %}{% if current_sort %}&sort={{ current_sort }}{% endif %}" class="btn btn-secondary btn-sm">Next</a>
+                    {% else %}
+                    <button class="btn btn-secondary btn-sm" disabled>Next</button>
+                    {% endif %}
+                </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </section>
+
+</main>
+{% endblock %}

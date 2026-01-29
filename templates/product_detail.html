@@ -1,0 +1,218 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ product.name }} | Robo Arena{% endblock %}
+{% block meta_description %}{{ product.short_description|truncatewords:30 }}{% endblock %}
+
+{% block content %}
+<main style="padding-top: 100px;">
+    
+    <!-- Breadcrumb -->
+    <div class="container" style="margin-bottom: var(--space-4);">
+        <div class="breadcrumb" style="color: var(--text-muted); font-size: 0.9rem;">
+            <a href="{% url 'home' %}">Home</a> / <a href="{% url 'shop' %}">Shop</a> / <a href="{% url 'category' product.category.slug %}">{{ product.category.name }}</a> / <span style="color: var(--text-main);">{{ product.name }}</span>
+        </div>
+    </div>
+
+    <!-- Product Core Info -->
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="product-detail-grid">
+                
+                <!-- Gallery -->
+                <div class="product-gallery">
+                    <div class="main-image-container">
+                        {% if product.primary_image %}
+                        <img src="{{ product.primary_image.image.url }}" id="main-product-img" alt="{{ product.name }}">
+                        {% else %}
+                        <img src="{% static 'assets/motor.png' %}" id="main-product-img" alt="{{ product.name }}">
+                        {% endif %}
+                    </div>
+                    <div class="thumbnail-list">
+                        {% for image in product.images.all %}
+                        <div class="thumbnail {% if image.is_primary %}active{% endif %}" onclick="changeImage('{{ image.image.url }}', this)">
+                            <img src="{{ image.image.url }}" alt="{{ image.alt_text }}">
+                        </div>
+                        {% empty %}
+                        <div class="thumbnail active" onclick="changeImage('{% static 'assets/motor.png' %}', this)">
+                            <img src="{% static 'assets/motor.png' %}" alt="View 1">
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Info Panel -->
+                <div class="product-info-panel">
+                    <div class="badge-wrapper" style="margin-bottom: 1rem;">
+                        {% if product.is_bestseller %}
+                        <span class="product-badge" style="position: static; display: inline-block;">Best Seller</span>
+                        {% elif product.is_new %}
+                        <span class="product-badge" style="position: static; display: inline-block;">New</span>
+                        {% endif %}
+                    </div>
+                    <h1 class="product-title-large">{{ product.name }}</h1>
+                    <div class="product-meta">
+                        <span class="text-mono text-accent" style="font-size: 0.9rem;">SKU: {{ product.sku }}</span>
+                        <div class="rating">
+                            {% for i in "12345" %}
+                            <i data-feather="star" style="{% if forloop.counter <= product.rating_average %}fill: var(--accent-primary);{% endif %} color: var(--accent-primary); width: 16px;"></i>
+                            {% endfor %}
+                            <span class="text-muted" style="margin-left: 0.5rem; font-size: 0.9rem;">({{ product.review_count }} Reviews)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="product-price-large">
+                        ${{ product.price }}
+                        {% if product.has_discount %}
+                        <span class="text-muted" style="font-size: 1rem; text-decoration: line-through; margin-left: 0.5rem;">${{ product.original_price }}</span>
+                        {% endif %}
+                    </div>
+
+                    <p class="product-short-desc">
+                        {{ product.short_description }}
+                    </p>
+
+                    <div class="product-actions">
+                        <div class="quantity-selector">
+                            <button class="qty-btn" onclick="updateQty(-1)">-</button>
+                            <input type="number" id="qty-input" value="1" min="1" max="10">
+                            <button class="qty-btn" onclick="updateQty(1)">+</button>
+                        </div>
+                        <button class="btn btn-primary btn-lg" style="flex: 1;">Add to Cart</button>
+                    </div>
+                    
+                    <div class="stock-status">
+                        {% if product.stock_status == 'in_stock' %}
+                        <span class="dot" style="background: #00ff88; box-shadow: 0 0 5px #00ff88;"></span> 
+                        In Stock - Ships today
+                        {% elif product.stock_status == 'out_of_stock' %}
+                        <span class="dot" style="background: #ff4444; box-shadow: 0 0 5px #ff4444;"></span> 
+                        Out of Stock
+                        {% elif product.stock_status == 'pre_order' %}
+                        <span class="dot" style="background: #ffaa00; box-shadow: 0 0 5px #ffaa00;"></span> 
+                        Pre-Order
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Tabs -->
+    <section class="section bg-surface">
+        <div class="container">
+            <div class="tabs-container">
+                <div class="tabs-header">
+                    <button class="tab-btn active" onclick="switchTab('specs')">Specifications</button>
+                    <button class="tab-btn" onclick="switchTab('desc')">Description</button>
+                    <button class="tab-btn" onclick="switchTab('reviews')">Reviews</button>
+                </div>
+                
+                <div class="tab-content" id="specs">
+                    <div class="specs-grid">
+                        {% for key, value in product.specs.items %}
+                        <div class="spec-row">
+                            <span class="spec-label">{{ key|title }}</span>
+                            <span class="spec-value">{{ value }}</span>
+                        </div>
+                        {% empty %}
+                        <p class="text-muted">No specifications available.</p>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="tab-content hidden" id="desc">
+                    {% if product.description_sections.exists %}
+                    <div class="desc-layout">
+                        <aside class="desc-sidebar">
+                            <h4 class="sidebar-title">Contents</h4>
+                            <nav class="desc-nav">
+                                {% for section in product.description_sections.all %}
+                                <a href="#desc-{{ section.slug }}" class="desc-nav-link {% if forloop.first %}active{% endif %}">{{ section.title }}</a>
+                                {% endfor %}
+                            </nav>
+                        </aside>
+                        
+                        <div class="desc-body">
+                            {% for section in product.description_sections.all %}
+                            <section id="desc-{{ section.slug }}" class="desc-section">
+                                <h3>{{ section.title }}</h3>
+                                {{ section.content|safe }}
+                                {% if section.image %}
+                                <img src="{{ section.image.url }}" alt="{{ section.title }}">
+                                {% endif %}
+                            </section>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% else %}
+                    <p>{{ product.short_description }}</p>
+                    {% endif %}
+                </div>
+
+                <div class="tab-content hidden" id="reviews">
+                    {% if product.reviews.exists %}
+                    <div class="reviews-list">
+                        {% for review in product.reviews.all %}
+                        <div class="review-item" style="border-bottom: 1px solid var(--border-subtle); padding: var(--space-4) 0;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <strong>{{ review.author }}</strong>
+                                <div class="rating">
+                                    {% for i in "12345" %}
+                                    <i data-feather="star" style="{% if forloop.counter <= review.rating %}fill: var(--accent-primary);{% endif %} color: var(--accent-primary); width: 14px;"></i>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <p class="text-muted" style="font-size: 0.9rem;">{{ review.content }}</p>
+                            <span class="text-mono" style="font-size: 0.75rem; color: var(--text-muted);">{{ review.created_at|date:"M d, Y" }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <p>No reviews yet. Be the first to review this product!</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Related Products -->
+    {% if related_products %}
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" style="font-size: 2rem;">Related Components</h2>
+            </div>
+            <div class="grid-3 product-grid">
+                {% for product in related_products %}
+                <div class="card product-card">
+                    <div class="product-image">
+                        {% if product.primary_image %}
+                        <img src="{{ product.primary_image.image.url }}" alt="{{ product.name }}">
+                        {% else %}
+                        <img src="{% static 'assets/motor.png' %}" alt="{{ product.name }}">
+                        {% endif %}
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h3>
+                        <div class="product-specs">
+                            {% for key, value in product.specs.items|slice:":2" %}
+                            <span class="tech-spec">{{ value }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="product-footer">
+                            <span class="price">${{ product.price }}</span>
+                            <a href="{{ product.get_absolute_url }}" class="btn-icon"><i data-feather="shopping-cart"></i></a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+</main>
+{% endblock %}
+
+{% block extra_js %}{% endblock %}

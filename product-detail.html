@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Magnum X-2200 | Robo Arena</title>
+    <meta name="description" content="Magnum X-2200 Brushless Motor - The industry standard for 30lb and 60lb combat robots. Featuring N52SH magnets and 8mm titanium shaft.">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,9 +34,28 @@
 
             <div class="header-actions">
                 <a href="shop.html" class="btn btn-primary">Store Access</a>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <i data-feather="menu"></i>
+                </button>
             </div>
         </div>
     </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="mobile-menu">
+        <div class="mobile-menu-header">
+            <a href="index.html" class="logo">ROBO<span class="text-accent">ARENA</span>.</a>
+            <button class="mobile-menu-close" onclick="toggleMobileMenu()">
+                <i data-feather="x"></i>
+            </button>
+        </div>
+        <nav class="mobile-nav">
+            <a href="index.html#robots" class="mobile-nav-link">Robots</a>
+            <a href="index.html#parts" class="mobile-nav-link">Parts</a>
+            <a href="index.html#engineers" class="mobile-nav-link">Engineers</a>
+            <a href="shop.html" class="mobile-nav-link">Shop</a>
+        </nav>
+    </div>
 
     <main style="padding-top: 100px;">
         
@@ -266,9 +286,36 @@
 
     </main>
 
-    <footer class="section" style="border-top: 1px solid var(--border-subtle); background: var(--bg-surface);">
-        <div class="container text-center">
-             <span class="text-mono" style="font-size: var(--text-xs); color: var(--text-muted);">© 2026 ROBO ARENA SYSTEMS.</span>
+    <footer class="main-footer section">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">ROBO<span class="text-accent">ARENA</span>.</a>
+                    <p>Premium components for combat robotics.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Shop</h4>
+                    <a href="shop.html">Robots</a>
+                    <a href="shop.html">Motors</a>
+                    <a href="shop.html">Electronics</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <a href="#">Documentation</a>
+                    <a href="#">Shipping</a>
+                    <a href="#">Returns</a>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Stay Updated</h4>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span class="text-mono">© 2026 ROBO ARENA SYSTEMS.</span>
+            </div>
         </div>
     </footer>
 

@@ -1,0 +1,392 @@
+[
+    {
+        "model": "store.category",
+        "pk": 1,
+        "fields": {
+            "name": "Motors",
+            "slug": "motors",
+            "icon": "cpu",
+            "description": "High-torque brushless motors designed for kinetic impact."
+        }
+    },
+    {
+        "model": "store.category",
+        "pk": 2,
+        "fields": {
+            "name": "ESCs",
+            "slug": "escs",
+            "icon": "activity",
+            "description": "Rapid-response ESCs with telemetry and current limiting."
+        }
+    },
+    {
+        "model": "store.category",
+        "pk": 3,
+        "fields": {
+            "name": "Frames & Armor",
+            "slug": "frames-armor",
+            "icon": "layers",
+            "description": "CNC-machined Titanium and AR500 steel frame components."
+        }
+    },
+    {
+        "model": "store.category",
+        "pk": 4,
+        "fields": {
+            "name": "Batteries",
+            "slug": "batteries",
+            "icon": "battery-charging",
+            "description": "High-discharge LiPo batteries for combat robotics."
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 1,
+        "fields": {
+            "name": "Magnum X-2200",
+            "slug": "magnum-x-2200",
+            "sku": "MTR-X2200-V4",
+            "category": 1,
+            "price": "149.00",
+            "original_price": "169.00",
+            "short_description": "The industry standard for 30lb and 60lb combat robots. Featuring N52SH magnets, 0.2mm laminations, and a hardened 8mm titanium shaft. Battle-hardened reliability.",
+            "specs": {
+                "kv_rating": "380KV",
+                "max_voltage": "60V (14S LiPo)",
+                "max_current": "120A Continuous",
+                "shaft_diameter": "8mm Titanium",
+                "weight": "450g"
+            },
+            "is_featured": true,
+            "is_new": true,
+            "is_bestseller": true,
+            "stock_status": "in_stock",
+            "created_at": "2026-01-15T10:00:00Z"
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 2,
+        "fields": {
+            "name": "Vector 300A ESC",
+            "slug": "vector-300a-esc",
+            "sku": "ESC-V300-V2",
+            "category": 2,
+            "price": "229.00",
+            "original_price": null,
+            "short_description": "Combat-grade ESC with 300A burst capacity. Features telemetry, current limiting, and thermal protection.",
+            "specs": {
+                "burst_current": "300A",
+                "continuous_current": "180A",
+                "voltage": "12S LiPo",
+                "weight": "85g"
+            },
+            "is_featured": true,
+            "is_new": false,
+            "is_bestseller": false,
+            "stock_status": "in_stock",
+            "created_at": "2026-01-10T10:00:00Z"
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 3,
+        "fields": {
+            "name": "Ti-6Al-4V Wedges",
+            "slug": "ti-6al-4v-wedges",
+            "sku": "FRM-TIW-G5",
+            "category": 3,
+            "price": "89.00",
+            "original_price": null,
+            "short_description": "Grade 5 Titanium wedges CNC machined for precision fit. Impact tested to 500J.",
+            "specs": {
+                "material": "Ti-6Al-4V Grade 5",
+                "manufacturing": "CNC Machined",
+                "thickness": "6mm",
+                "weight": "320g"
+            },
+            "is_featured": true,
+            "is_new": false,
+            "is_bestseller": false,
+            "stock_status": "in_stock",
+            "created_at": "2026-01-08T10:00:00Z"
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 4,
+        "fields": {
+            "name": "Magnum S-1000",
+            "slug": "magnum-s-1000",
+            "sku": "MTR-S1000-V1",
+            "category": 1,
+            "price": "89.00",
+            "original_price": null,
+            "short_description": "Compact brushless motor for antweight and beetleweight robots. High efficiency in a small package.",
+            "specs": {
+                "voltage": "24V",
+                "power": "1.2kW",
+                "kv_rating": "920KV",
+                "weight": "180g"
+            },
+            "is_featured": false,
+            "is_new": false,
+            "is_bestseller": false,
+            "stock_status": "in_stock",
+            "created_at": "2026-01-05T10:00:00Z"
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 5,
+        "fields": {
+            "name": "AR500 Armor Plate",
+            "slug": "ar500-armor-plate",
+            "sku": "FRM-AR500-6MM",
+            "category": 3,
+            "price": "45.00",
+            "original_price": null,
+            "short_description": "Hardened AR500 steel armor plate. Pre-drilled mounting holes. Perfect for front wedge armor.",
+            "specs": {
+                "material": "AR500 Steel",
+                "thickness": "6mm",
+                "hardness": "Hardened",
+                "weight": "580g"
+            },
+            "is_featured": false,
+            "is_new": false,
+            "is_bestseller": false,
+            "stock_status": "in_stock",
+            "created_at": "2026-01-03T10:00:00Z"
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 6,
+        "fields": {
+            "name": "Vector Mini 50A",
+            "slug": "vector-mini-50a",
+            "sku": "ESC-VM50-V1",
+            "category": 2,
+            "price": "59.00",
+            "original_price": null,
+            "short_description": "Compact ESC for smaller weight classes. 50A continuous with 4S LiPo support.",
+            "specs": {
+                "continuous_current": "50A",
+                "burst_current": "80A",
+                "voltage": "4S LiPo",
+                "weight": "28g"
+            },
+            "is_featured": false,
+            "is_new": true,
+            "is_bestseller": false,
+            "stock_status": "in_stock",
+            "created_at": "2026-01-20T10:00:00Z"
+        }
+    },
+    {
+        "model": "store.productimage",
+        "pk": 1,
+        "fields": {
+            "product": 1,
+            "image": "products/motor.png",
+            "alt_text": "Magnum X-2200 Motor",
+            "is_primary": true,
+            "order": 1
+        }
+    },
+    {
+        "model": "store.productimage",
+        "pk": 2,
+        "fields": {
+            "product": 1,
+            "image": "products/hero-robot.png",
+            "alt_text": "Magnum X-2200 in Robot Context",
+            "is_primary": false,
+            "order": 2
+        }
+    },
+    {
+        "model": "store.productimage",
+        "pk": 3,
+        "fields": {
+            "product": 1,
+            "image": "products/blueprint.png",
+            "alt_text": "Magnum X-2200 Schematic",
+            "is_primary": false,
+            "order": 3
+        }
+    },
+    {
+        "model": "store.productimage",
+        "pk": 4,
+        "fields": {
+            "product": 2,
+            "image": "products/esc.png",
+            "alt_text": "Vector 300A ESC",
+            "is_primary": true,
+            "order": 1
+        }
+    },
+    {
+        "model": "store.productimage",
+        "pk": 5,
+        "fields": {
+            "product": 3,
+            "image": "products/frame.png",
+            "alt_text": "Ti-6Al-4V Wedges",
+            "is_primary": true,
+            "order": 1
+        }
+    },
+    {
+        "model": "store.productimage",
+        "pk": 6,
+        "fields": {
+            "product": 4,
+            "image": "products/motor.png",
+            "alt_text": "Magnum S-1000",
+            "is_primary": true,
+            "order": 1
+        }
+    },
+    {
+        "model": "store.productimage",
+        "pk": 7,
+        "fields": {
+            "product": 5,
+            "image": "products/frame.png",
+            "alt_text": "AR500 Armor Plate",
+            "is_primary": true,
+            "order": 1
+        }
+    },
+    {
+        "model": "store.productimage",
+        "pk": 8,
+        "fields": {
+            "product": 6,
+            "image": "products/esc.png",
+            "alt_text": "Vector Mini 50A ESC",
+            "is_primary": true,
+            "order": 1
+        }
+    },
+    {
+        "model": "store.descriptionsection",
+        "pk": 1,
+        "fields": {
+            "product": 1,
+            "title": "Built for Combat",
+            "slug": "overview",
+            "content": "<p>Designed specifically for the rigorous demands of combat robotics, the Magnum X-2200 eliminates common failure points found in standard hobby motors. The can is reinforced with a 1mm steel ring to prevent deformation from impacts.</p><p>The magnets are glued with high-temp epoxy and retained by a kevlar wrap to ensure they stay in place even under extreme shock loads.</p>",
+            "image": "products/hero-robot.png",
+            "order": 1
+        }
+    },
+    {
+        "model": "store.descriptionsection",
+        "pk": 2,
+        "fields": {
+            "product": 1,
+            "title": "Key Features",
+            "slug": "features",
+            "content": "<ul><li>Reinforced steel flux ring for impact resistance</li><li>N52SH High-temperature magnets (150°C rating)</li><li>0.2mm silicon steel stator laminations for high efficiency</li><li>Hardened 8mm Titanium shaft with flat spots</li><li>Quadruple bearing support system</li></ul>",
+            "image": null,
+            "order": 2
+        }
+    },
+    {
+        "model": "store.descriptionsection",
+        "pk": 3,
+        "fields": {
+            "product": 1,
+            "title": "Technical Specifications",
+            "slug": "specs",
+            "content": "<p>The Magnum X-2200 is engineered to provide maximum torque density. With a 380KV rating, it is optimized for 6S-12S LiPo setups, delivering up to 4.5kW of peak power.</p><p>All motors are dynamic balanced to within 0.05g to ensure smooth operation at high RPMs.</p>",
+            "image": null,
+            "order": 3
+        }
+    },
+    {
+        "model": "store.descriptionsection",
+        "pk": 4,
+        "fields": {
+            "product": 1,
+            "title": "Shipping & Warranty",
+            "slug": "shipping",
+            "content": "<p>Ships with bullet connectors pre-soldered. Includes mounting hardware pack.</p><p>Backed by our 1-year combat warranty. If it breaks during normal match use (excluding direct weapon hits to the can), we'll replace it.</p>",
+            "image": null,
+            "order": 4
+        }
+    },
+    {
+        "model": "store.descriptionsection",
+        "pk": 5,
+        "fields": {
+            "product": 2,
+            "title": "High Current Capability",
+            "slug": "current",
+            "content": "<p>The Vector 300A is built to sustain continuous loads of 180A and bursts of up to 300A. Ideal for heavyweight drive systems or large weapon motors.</p>",
+            "image": "products/esc.png",
+            "order": 1
+        }
+    },
+    {
+        "model": "store.descriptionsection",
+        "pk": 6,
+        "fields": {
+            "product": 2,
+            "title": "Telemetry & Protection",
+            "slug": "features",
+            "content": "<ul><li>Real-time telemetry (Voltage, Current, RPM, Temp)</li><li>Adjustable current limiting</li><li>Thermal shutdown protection</li><li>Regenerative braking</li></ul>",
+            "image": null,
+            "order": 2
+        }
+    },
+    {
+        "model": "store.descriptionsection",
+        "pk": 7,
+        "fields": {
+            "product": 3,
+            "title": "Material Science",
+            "slug": "material",
+            "content": "<p>Grade 5 Titanium (Ti-6Al-4V) offers the perfect balance of strength, weight, and toughness. Superior to aluminum for impact resistance and lighter than steel.</p>",
+            "image": "products/frame.png",
+            "order": 1
+        }
+    },
+    {
+        "model": "store.review",
+        "pk": 1,
+        "fields": {
+            "product": 1,
+            "author": "RobotBuilder42",
+            "rating": 5,
+            "content": "Used this motor in my 30lb spinner. Survived 4 tournaments without a single issue. The titanium shaft is indestructible!",
+            "created_at": "2026-01-18T14:30:00Z"
+        }
+    },
+    {
+        "model": "store.review",
+        "pk": 2,
+        "fields": {
+            "product": 1,
+            "author": "CombatTech",
+            "rating": 5,
+            "content": "Best motor I've ever used in combat robotics. The build quality is incredible and it handles abuse that would destroy other motors.",
+            "created_at": "2026-01-20T09:15:00Z"
+        }
+    },
+    {
+        "model": "store.review",
+        "pk": 3,
+        "fields": {
+            "product": 1,
+            "author": "ArenaChampion",
+            "rating": 4,
+            "content": "Great motor overall. Only downside is the weight, but the durability makes up for it. Would recommend for any serious competitor.",
+            "created_at": "2026-01-22T16:45:00Z"
+        }
+    }
+]

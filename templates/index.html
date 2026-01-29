@@ -1,0 +1,230 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Robo Arena | Professional Combat Robotics{% endblock %}
+{% block meta_description %}Premium combat robots and precision engineering parts for professional competitors.{% endblock %}
+
+{% block content %}
+<main>
+    <!-- Hero Section -->
+    <section class="section hero-section">
+        <!-- Ambient Background Shapes -->
+        <div class="hero-bg-shape shape-1"></div>
+        <div class="hero-bg-shape shape-2"></div>
+
+        <div class="container grid-2 hero-grid">
+            <div class="hero-content">
+                <span class="section-subtitle fade-in-up" style="animation-delay: 0.1s;">Combat Grade Engineering</span>
+                <h1 class="hero-title fade-in-up" style="animation-delay: 0.2s;">
+                    Dominate the <br>
+                    <span class="text-accent text-gradient">Arena.</span>
+                </h1>
+                <p class="hero-desc fade-in-up" style="animation-delay: 0.3s;">
+                    Precision-engineered combat robots and high-torque propulsion systems for professional robot combat leagues.
+                </p>
+                <div class="hero-actions fade-in-up" style="animation-delay: 0.4s;">
+                    <a href="{% url 'shop' %}" class="btn btn-primary">Shop Robots</a>
+                    <a href="{% url 'shop' %}" class="btn btn-secondary">Browse Parts</a>
+                </div>
+                
+                <!-- Trust Indicators -->
+                <div class="hero-stats fade-in-up" style="animation-delay: 0.5s; display: flex; gap: 2rem; margin-top: 3rem;">
+                    <div>
+                        <span class="stat-value text-accent" style="font-family: var(--font-tech); font-size: 1.5rem; display: block;">{{ stats.parts_shipped }}</span>
+                        <span class="stat-label" style="font-size: 0.8rem; color: var(--text-muted);">Parts Shipped</span>
+                    </div>
+                    <div>
+                        <span class="stat-value text-accent" style="font-family: var(--font-tech); font-size: 1.5rem; display: block;">{{ stats.tournaments_won }}</span>
+                        <span class="stat-label" style="font-size: 0.8rem; color: var(--text-muted);">Tournaments Won</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-visual fade-in-up" style="animation-delay: 0.5s;">
+                <div class="robot-container">
+                    <img src="{% static 'assets/hero-robot.png' %}" alt="Heavyweight Combat Robot" class="hero-robot-img">
+                    
+                    <!-- HUD Decorative Elements -->
+                    <div class="hud-badge badge-right">
+                        <span class="hud-label">ARMOR</span>
+                        <span class="hud-value">Ti-6Al-4V</span>
+                    </div>
+                    <div class="hud-badge badge-left">
+                        <span class="hud-label">STATUS</span>
+                        <span class="hud-value text-accent">ONLINE</span>
+                    </div>
+                    <div class="hud-circle"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Categories -->
+    <section id="parts" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Systems</span>
+                <h2 class="section-title">Upgrade Your Arsenal</h2>
+            </div>
+            
+            <div class="grid-3 category-grid">
+                {% for category in categories %}
+                <div class="card category-card">
+                    <div class="card-image">
+                        {% if category.slug == 'motors' %}
+                        <img src="{% static 'assets/motor.png' %}" alt="{{ category.name }}">
+                        {% elif category.slug == 'escs' %}
+                        <img src="{% static 'assets/esc.png' %}" alt="{{ category.name }}">
+                        {% else %}
+                        <img src="{% static 'assets/frame.png' %}" alt="{{ category.name }}">
+                        {% endif %}
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">{{ category.name }}</h3>
+                        <p class="card-desc">{{ category.description }}</p>
+                        <a href="{% url 'category' category.slug %}" class="link-arrow">View {{ category.name }} <i data-feather="arrow-right"></i></a>
+                    </div>
+                </div>
+                {% empty %}
+                <!-- Fallback static cards -->
+                <div class="card category-card">
+                    <div class="card-image">
+                        <img src="{% static 'assets/motor.png' %}" alt="Brushless Motors">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Propulsion</h3>
+                        <p class="card-desc">High-torque brushless motors designed for kinetic impact.</p>
+                        <a href="{% url 'shop' %}" class="link-arrow">View Motors <i data-feather="arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="card category-card">
+                    <div class="card-image">
+                        <img src="{% static 'assets/esc.png' %}" alt="Speed Controllers">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Control Systems</h3>
+                        <p class="card-desc">Rapid-response ESCs with telemetry and current limiting.</p>
+                        <a href="{% url 'shop' %}" class="link-arrow">View ESCs <i data-feather="arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="card category-card">
+                    <div class="card-image">
+                        <img src="{% static 'assets/frame.png' %}" alt="Titanium Frames">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Chassis & Armor</h3>
+                        <p class="card-desc">CNC-machined Titanium and AR500 steel frame components.</p>
+                        <a href="{% url 'shop' %}" class="link-arrow">View Frames <i data-feather="arrow-right"></i></a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section id="featured" class="section bg-surface">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Battle Tested</span>
+                <h2 class="section-title">New Arrivals</h2>
+                <a href="{% url 'shop' %}" class="btn btn-secondary btn-sm">View All</a>
+            </div>
+
+            <div class="grid-3 product-grid">
+                {% for product in featured_products %}
+                <div class="card product-card">
+                    {% if product.is_new %}
+                    <div class="product-badge">New</div>
+                    {% elif product.is_bestseller %}
+                    <div class="product-badge">Best Seller</div>
+                    {% endif %}
+                    <div class="product-image">
+                        {% if product.primary_image %}
+                        <img src="{{ product.primary_image.image.url }}" alt="{{ product.name }}">
+                        {% else %}
+                        <img src="{% static 'assets/motor.png' %}" alt="{{ product.name }}">
+                        {% endif %}
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h3>
+                        <div class="product-specs">
+                            {% for key, value in product.specs.items|slice:":2" %}
+                            <span class="tech-spec">{{ value }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="product-footer">
+                            <span class="price">${{ product.price }}</span>
+                            <a href="{{ product.get_absolute_url }}" class="btn-icon"><i data-feather="shopping-cart"></i></a>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <p class="text-muted">No featured products available.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="why-us" class="section section-dark-grid">
+        <div class="container">
+            <div class="grid-2 why-grid">
+                <div class="info-content">
+                    <span class="section-subtitle">Why RoboArena</span>
+                    <h2 class="section-title">Engineered for Victory</h2>
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <div class="feature-icon-wrapper">
+                                <i data-feather="shield"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Combat Proven Durability</h4>
+                                <p>AR500 steel chassis tested against kinetic spinners and hammer blows.</p>
+                            </div>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-icon-wrapper">
+                                <i data-feather="zap"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>High-Voltage Performance</h4>
+                                <p>Systems rated for 12S-16S LiPo power with burst currents up to 400A.</p>
+                            </div>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-icon-wrapper">
+                                <i data-feather="box"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Modular Architecture</h4>
+                                <p>Standardized mounting patterns (NEMA 23/34) for rapid pit repairs.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="info-visual">
+                     <div class="hologram-container">
+                         <img src="{% static 'assets/blueprint.png' %}" alt="Robot Schematic" class="hologram-image">
+                         <div class="hologram-glow"></div>
+                         <!-- Decorative Data overlay -->
+                         <div class="data-point p1"></div>
+                         <div class="data-point p2"></div>
+                         <div class="data-point p3"></div>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta-section text-center">
+        <div class="container">
+            <h2 class="hero-title" style="font-size: 3rem;">Ready to Build?</h2>
+            <p class="hero-desc" style="margin: 2rem auto;">Join the league of professional builders today.</p>
+            <a href="{% url 'shop' %}" class="btn btn-primary btn-lg">Enter the Arena</a>
+        </div>
+    </section>
+</main>
+{% endblock %}

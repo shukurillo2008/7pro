@@ -166,4 +166,42 @@ document.addEventListener('DOMContentLoaded', () => {
         menu.classList.toggle('active');
         document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
     }
+
+    // --- Description Tab Scroll Spy ---
+    const descNavLinks = document.querySelectorAll('.desc-nav-link');
+    const descSections = document.querySelectorAll('.desc-section');
+
+    if (descNavLinks.length > 0 && descSections.length > 0) {
+        function onScroll() {
+            let current = '';
+            
+            // Only run if the desc tab is visible
+            const descTab = document.getElementById('desc');
+            if (descTab && descTab.classList.contains('hidden')) return;
+
+            descSections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            descNavLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', onScroll);
+        
+        // Trigger on tab switch
+        const descTabBtn = document.querySelector('button[onclick="switchTab(\'desc\')"]');
+        if(descTabBtn) {
+             descTabBtn.addEventListener('click', () => {
+                 setTimeout(onScroll, 100);
+             });
+        }
+    }
 });

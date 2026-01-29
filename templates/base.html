@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Robo Arena{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}Premium combat robots and precision engineering parts for professional competitors.{% endblock %}">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="main-header">
+        <div class="container header-inner">
+            <a href="{% url 'home' %}" class="logo">
+                ROBO<span class="text-accent">ARENA</span>.
+            </a>
+            
+            <nav class="desktop-nav">
+                <a href="{% url 'home' %}#robots" class="nav-link">Robots</a>
+                <a href="{% url 'home' %}#parts" class="nav-link">Parts</a>
+                <a href="{% url 'home' %}#engineers" class="nav-link">Engineers</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="{% url 'shop' %}" class="btn btn-primary">Store Access</a>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <i data-feather="menu"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="mobile-menu">
+        <div class="mobile-menu-header">
+            <a href="{% url 'home' %}" class="logo">ROBO<span class="text-accent">ARENA</span>.</a>
+            <button class="mobile-menu-close" onclick="toggleMobileMenu()">
+                <i data-feather="x"></i>
+            </button>
+        </div>
+        <nav class="mobile-nav">
+            <a href="{% url 'home' %}#robots" class="mobile-nav-link">Robots</a>
+            <a href="{% url 'home' %}#parts" class="mobile-nav-link">Parts</a>
+            <a href="{% url 'home' %}#engineers" class="mobile-nav-link">Engineers</a>
+            <a href="{% url 'shop' %}" class="mobile-nav-link">Shop</a>
+        </nav>
+    </div>
+
+    {% block content %}{% endblock %}
+
+    <footer class="main-footer section">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="{% url 'home' %}" class="logo">ROBO<span class="text-accent">ARENA</span>.</a>
+                    <p>Premium components for combat robotics.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Shop</h4>
+                    <a href="{% url 'shop' %}">Robots</a>
+                    <a href="{% url 'shop' %}">Motors</a>
+                    <a href="{% url 'shop' %}">Electronics</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <a href="#">Documentation</a>
+                    <a href="#">Shipping</a>
+                    <a href="#">Returns</a>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Stay Updated</h4>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span class="text-mono">© 2026 ROBO ARENA SYSTEMS.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/main.js' %}"></script>
+    <script>
+        feather.replace();
+    </script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

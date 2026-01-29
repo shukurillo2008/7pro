@@ -22,7 +22,7 @@
     <!-- Header -->
     <header id="main-header">
         <div class="container header-inner">
-            <a href="#" class="logo">
+            <a href="index.html" class="logo">
                 ROBO<span class="text-accent">ARENA</span>.
             </a>
             
@@ -34,9 +34,28 @@
 
             <div class="header-actions">
                 <a href="shop.html" class="btn btn-primary">Store Access</a>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <i data-feather="menu"></i>
+                </button>
             </div>
         </div>
     </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="mobile-menu">
+        <div class="mobile-menu-header">
+            <a href="index.html" class="logo">ROBO<span class="text-accent">ARENA</span>.</a>
+            <button class="mobile-menu-close" onclick="toggleMobileMenu()">
+                <i data-feather="x"></i>
+            </button>
+        </div>
+        <nav class="mobile-nav">
+            <a href="#robots" class="mobile-nav-link">Robots</a>
+            <a href="#parts" class="mobile-nav-link">Parts</a>
+            <a href="#engineers" class="mobile-nav-link">Engineers</a>
+            <a href="shop.html" class="mobile-nav-link">Shop</a>
+        </nav>
+    </div>
 
     <main>
         <!-- Hero Section -->
@@ -109,7 +128,7 @@
                         <div class="card-content">
                             <h3 class="card-title">Propulsion</h3>
                             <p class="card-desc">High-torque brushless motors designed for kinetic impact.</p>
-                            <a href="#" class="link-arrow">View Motors <i data-feather="arrow-right"></i></a>
+                            <a href="shop.html" class="link-arrow">View Motors <i data-feather="arrow-right"></i></a>
                         </div>
                     </div>
 
@@ -121,7 +140,7 @@
                         <div class="card-content">
                             <h3 class="card-title">Control Systems</h3>
                             <p class="card-desc">Rapid-response ESCs with telemetry and current limiting.</p>
-                            <a href="#" class="link-arrow">View ESCs <i data-feather="arrow-right"></i></a>
+                            <a href="shop.html" class="link-arrow">View ESCs <i data-feather="arrow-right"></i></a>
                         </div>
                     </div>
 
@@ -133,7 +152,7 @@
                         <div class="card-content">
                             <h3 class="card-title">Chassis & Armor</h3>
                             <p class="card-desc">CNC-machined Titanium and AR500 steel frame components.</p>
-                            <a href="#" class="link-arrow">View Frames <i data-feather="arrow-right"></i></a>
+                            <a href="shop.html" class="link-arrow">View Frames <i data-feather="arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -146,7 +165,7 @@
                 <div class="section-header">
                     <span class="section-subtitle">Battle Tested</span>
                     <h2 class="section-title">New Arrivals</h2>
-                    <a href="#" class="btn btn-secondary btn-sm">View All</a>
+                    <a href="shop.html" class="btn btn-secondary btn-sm">View All</a>
                 </div>
 
                 <div class="grid-3 product-grid">
@@ -230,7 +249,7 @@
                                     <i data-feather="zap"></i>
                                 </div>
                                 <div class="feature-text">
-                                    <h4>High-Votage Performance</h4>
+                                    <h4>High-Voltage Performance</h4>
                                     <p>Systems rated for 12S-16S LiPo power with burst currents up to 400A.</p>
                                 </div>
                             </li>
@@ -274,7 +293,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="#" class="logo">ROBO<span class="text-accent">ARENA</span>.</a>
+                    <a href="index.html" class="logo">ROBO<span class="text-accent">ARENA</span>.</a>
                     <p>Premium components for combat robotics.</p>
                 </div>
                 <div class="footer-links">
