@@ -150,8 +150,49 @@
                     </div>
 
                     <div class="tab-content hidden" id="desc">
-                        <p>Designed specifically for the rigorous demands of combat robotics, the Magnum X-2200 eliminates common failure points found in standard hobby motors. The can is reinforced with a 1mm steel ring to prevent deformation from impacts. The magnets are glued with high-temp epoxy and retained by a kevlar wrap.</p>
-                        <p>Perfect for weapon drives or heavy-duty drivetrains in middleweight bots.</p>
+                        <div class="desc-layout">
+                            <aside class="desc-sidebar">
+                                <h4 class="sidebar-title">Contents</h4>
+                                <nav class="desc-nav">
+                                    <a href="#desc-overview" class="desc-nav-link active">Overview</a>
+                                    <a href="#desc-features" class="desc-nav-link">Key Features</a>
+                                    <a href="#desc-specs" class="desc-nav-link">Technical Details</a>
+                                    <a href="#desc-shipping" class="desc-nav-link">Shipping Info</a>
+                                </nav>
+                            </aside>
+                            
+                            <div class="desc-body">
+                                <section id="desc-overview" class="desc-section">
+                                    <h3>Built for Combat</h3>
+                                    <p>Designed specifically for the rigorous demands of combat robotics, the Magnum X-2200 eliminates common failure points found in standard hobby motors. The can is reinforced with a 1mm steel ring to prevent deformation from impacts.</p>
+                                    <img src="assets/hero-robot.png" alt="Magnum X-2200 Internal View">
+                                    <p>The magnets are glued with high-temp epoxy and retained by a kevlar wrap to ensure they stay in place even under extreme shock loads.</p>
+                                </section>
+                                
+                                <section id="desc-features" class="desc-section">
+                                    <h3>Key Features</h3>
+                                    <ul>
+                                        <li>Reinforced steel flux ring for impact resistance</li>
+                                        <li>N52SH High-temperature magnets (150°C rating)</li>
+                                        <li>0.2mm silicon steel stator laminations for high efficiency</li>
+                                        <li>Hardened 8mm Titanium shaft with flat spots</li>
+                                        <li>Quadruple bearing support system</li>
+                                    </ul>
+                                </section>
+                                
+                                <section id="desc-specs" class="desc-section">
+                                    <h3>Technical Specifications</h3>
+                                    <p>The Magnum X-2200 is engineered to provide maximum torque density. With a 380KV rating, it is optimized for 6S-12S LiPo setups, delivering up to 4.5kW of peak power.</p>
+                                    <p>All motors are dynamic balanced to within 0.05g to ensure smooth operation at high RPMs.</p>
+                                </section>
+                                 
+                                 <section id="desc-shipping" class="desc-section">
+                                    <h3>Shipping & Warranty</h3>
+                                    <p>Ships with bullet connectors pre-soldered. Includes mounting hardware pack.</p>
+                                    <p>Backed by our 1-year combat warranty. If it breaks during normal match use (excluding direct weapon hits to the can), we'll replace it.</p>
+                                </section>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="tab-content hidden" id="reviews">
@@ -234,6 +275,43 @@
     <script src="js/main.js"></script>
     <script>
         feather.replace();
+
+        // Description Tab Scroll Spy
+        const descNavLinks = document.querySelectorAll('.desc-nav-link');
+        const descSections = document.querySelectorAll('.desc-section');
+
+        function onScroll() {
+            let current = '';
+            
+            // Only run if the desc tab is visible
+            const descTab = document.getElementById('desc');
+            if (descTab.classList.contains('hidden')) return;
+
+            descSections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.scrollY >= sectionTop - 200) { // Offset for header + padding
+                    current = section.getAttribute('id');
+                }
+            });
+
+            descNavLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', onScroll);
+        
+        // Also update when clicking tabs if needed, but the scroll listener covers mostly everything.
+        // We might want to trigger a check when switching to 'desc' tab.
+        const descTabBtn = document.querySelector('button[onclick="switchTab(\'desc\')"]');
+        if(descTabBtn) {
+             descTabBtn.addEventListener('click', () => {
+                 setTimeout(onScroll, 100); // Small delay for layout
+             });
+        }
     </script>
 </body>
 </html>

@@ -1298,3 +1298,100 @@ input[type="range"]:active::-webkit-slider-thumb {
         text-align: center;
     }
 }
+
+/* Product Description Layout */
+.desc-layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: var(--space-12);
+    padding: var(--space-8) 0;
+}
+
+.desc-sidebar {
+    position: sticky;
+    top: 120px; /* Adjust based on header height */
+    height: fit-content;
+    padding-right: var(--space-4);
+    border-right: 1px solid var(--border-subtle);
+}
+
+.sidebar-title {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: var(--space-4);
+    font-family: var(--font-tech);
+}
+
+.desc-nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.desc-nav-link {
+    display: block;
+    padding: var(--space-2);
+    color: var(--text-secondary);
+    border-left: 2px solid transparent;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.desc-nav-link:hover, .desc-nav-link.active {
+    color: var(--accent-primary);
+    background: linear-gradient(90deg, rgba(0, 240, 255, 0.05), transparent);
+    border-left-color: var(--accent-primary);
+    padding-left: var(--space-4);
+}
+
+.desc-section {
+    margin-bottom: var(--space-12);
+    scroll-margin-top: 140px; /* Offset for sticky header */
+}
+
+/* Last section shouldn't have huge margin if it's the end */
+.desc-section:last-child {
+    margin-bottom: 0;
+}
+
+/* Content Styling */
+.desc-body h2, .desc-body h3 {
+    margin-bottom: var(--space-4);
+    color: var(--text-main);
+}
+
+.desc-body p {
+    margin-bottom: var(--space-4);
+    line-height: 1.8;
+}
+
+.desc-body ul {
+    list-style: disc;
+    margin-left: var(--space-4);
+    margin-bottom: var(--space-4);
+    color: var(--text-secondary);
+}
+
+.desc-body li {
+    margin-bottom: var(--space-2);
+}
+
+.desc-body img {
+    border-radius: var(--space-2);
+    margin: var(--space-8) 0;
+    width: 100%;
+    border: 1px solid var(--border-subtle);
+}
+
+@media (max-width: 768px) {
+    .desc-layout {
+        grid-template-columns: 1fr;
+        gap: var(--space-8);
+    }
+    
+    .desc-sidebar {
+        display: none;
+    }
+}
