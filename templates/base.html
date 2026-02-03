@@ -36,7 +36,13 @@
             </nav>
 
             <div class="header-actions">
-                <a href="{% url 'shop' %}" class="btn btn-primary">Store Access</a>
+                <a href="{% url 'shop' %}" class="btn btn-secondary btn-sm" style="margin-right: 0.5rem;">Store</a>
+                <a href="{% url 'cart' %}" class="btn btn-primary" style="position: relative; padding: 0.8em 1.2em;">
+                    <i data-feather="shopping-cart" style="width: 18px; height: 18px;"></i>
+                    {% if cart_count > 0 %}
+                    <span style="position: absolute; top: -5px; right: -5px; background: #ff4444; color: white; border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700;">{{ cart_count }}</span>
+                    {% endif %}
+                </a>
                 <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
                     <i data-feather="menu"></i>
                 </button>
@@ -95,9 +101,110 @@
         </div>
     </footer>
 
+    <!-- Toast Notification -->
+    <div id="toast-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 10000;"></div>
+
     <script src="{% static 'js/main.js' %}"></script>
     <script>
         feather.replace();
+
+        // Toast Notification Function
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            // Set styles based on type
+            let bgColor = 'var(--bg-card)';
+            let borderColor = 'var(--accent-primary)';
+            let textColor = 'var(--text-main)';
+            
+            if (type === 'error') {
+                borderColor = '#ff4444';
+            }
+
+            toast.style.cssText = `
+                background: ${bgColor};
+                border: 1px solid ${borderColor};
+                color: ${textColor};
+                padding: 1rem 1.5rem;
+                margin-top: 10px;
+                border-radius: 4px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                min-width: 250px;
+                transform: translateX(120%);
+                transition: transform 0.3s ease;
+                font-family: var(--font-body);
+                font-size: 0.9rem;
+            `;
+            
+            toast.innerHTML = `
+                <i data-feather="${type === 'success' ? 'check-circle' : 'alert-circle'}" style="color: ${borderColor}"></i>
+                <span>${message}</span>
+            `;
+            
+            container.appendChild(toast);
+            feather.replace(); // Render icon in new toast
+
+            // Animate in
+            requestAnimationFrame(() => {
+                toast.style.transform = 'translateX(0)';
+            });
+
+            // Remove after 3 seconds
+            setTimeout(() => {
+                toast.style.transform = 'translateX(120%)';
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            }, 3000);
+        }
+
+        // Add to Cart AJAX
+        function addToCart(productId) {
+            const url = `/add_cart/${productId}/`;
+            
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if(response.redirected) {
+                    window.location.href = response.url; // Fallback for non-AJAX or redirects
+                    return;
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    showToast(data.message);
+                    // Update Cart Badge
+                    const badge = document.querySelector('.header-actions .btn-primary span');
+                    if (badge) {
+                        badge.textContent = data.cart_count;
+                    } else if (data.cart_count > 0) {
+                        // Create badge if not exists
+                         const cartBtn = document.querySelector('.header-actions .btn-primary');
+                         const newBadge = document.createElement('span');
+                         newBadge.style.cssText = 'position: absolute; top: -5px; right: -5px; background: #ff4444; color: white; border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700;';
+                         newBadge.textContent = data.cart_count;
+                         cartBtn.appendChild(newBadge);
+                    }
+                } else {
+                    // It might be a redirect page or HTML if something went wrong
+                    console.error('Error adding to cart:', data);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showToast('Failed to add to cart', 'error');
+            });
+        }
     </script>
     {% block extra_js %}{% endblock %}
 </body>

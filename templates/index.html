@@ -14,13 +14,12 @@
 
         <div class="container grid-2 hero-grid">
             <div class="hero-content">
-                <span class="section-subtitle fade-in-up" style="animation-delay: 0.1s;">Combat Grade Engineering</span>
+                <span class="section-subtitle fade-in-up" style="animation-delay: 0.1s;">{{ home_settings.hero_subtitle|default:"Combat Grade Engineering" }}</span>
                 <h1 class="hero-title fade-in-up" style="animation-delay: 0.2s;">
-                    Dominate the <br>
-                    <span class="text-accent text-gradient">Arena.</span>
+                    {{ home_settings.hero_title|safe|default:"Dominate the <br><span class='text-accent text-gradient'>Arena.</span>" }}
                 </h1>
                 <p class="hero-desc fade-in-up" style="animation-delay: 0.3s;">
-                    Precision-engineered combat robots and high-torque propulsion systems for professional robot combat leagues.
+                    {{ home_settings.hero_description|default:"Precision-engineered combat robots and high-torque propulsion systems for professional robot combat leagues." }}
                 </p>
                 <div class="hero-actions fade-in-up" style="animation-delay: 0.4s;">
                     <a href="{% url 'shop' %}" class="btn btn-primary">Shop Robots</a>
@@ -42,7 +41,11 @@
             
             <div class="hero-visual fade-in-up" style="animation-delay: 0.5s;">
                 <div class="robot-container">
+                    {% if home_settings.hero_image %}
+                    <img src="{{ home_settings.hero_image.url }}" alt="Hero Robot" class="hero-robot-img">
+                    {% else %}
                     <img src="{% static 'assets/hero-robot.png' %}" alt="Heavyweight Combat Robot" class="hero-robot-img">
+                    {% endif %}
                     
                     <!-- HUD Decorative Elements -->
                     <div class="hud-badge badge-right">
@@ -155,7 +158,7 @@
                         </div>
                         <div class="product-footer">
                             <span class="price">${{ product.price }}</span>
-                            <a href="{{ product.get_absolute_url }}" class="btn-icon"><i data-feather="shopping-cart"></i></a>
+                            <button class="btn-icon" onclick="addToCart({{ product.id }})"><i data-feather="shopping-cart"></i></button>
                         </div>
                     </div>
                 </div>
@@ -174,6 +177,18 @@
                     <span class="section-subtitle">Why RoboArena</span>
                     <h2 class="section-title">Engineered for Victory</h2>
                     <ul class="feature-list">
+                        {% for feature in features %}
+                        <li class="feature-item">
+                            <div class="feature-icon-wrapper">
+                                <i data-feather="{{ feature.icon }}"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>{{ feature.title }}</h4>
+                                <p>{{ feature.description }}</p>
+                            </div>
+                        </li>
+                        {% empty %}
+                        <!-- Fallbacks if no features defined -->
                         <li class="feature-item">
                             <div class="feature-icon-wrapper">
                                 <i data-feather="shield"></i>
@@ -192,7 +207,7 @@
                                 <p>Systems rated for 12S-16S LiPo power with burst currents up to 400A.</p>
                             </div>
                         </li>
-                        <li class="feature-item">
+                         <li class="feature-item">
                             <div class="feature-icon-wrapper">
                                 <i data-feather="box"></i>
                             </div>
@@ -201,12 +216,17 @@
                                 <p>Standardized mounting patterns (NEMA 23/34) for rapid pit repairs.</p>
                             </div>
                         </li>
+                        {% endfor %}
                     </ul>
                 </div>
                 
                 <div class="info-visual">
                      <div class="hologram-container">
+                         {% if home_settings.hologram_image %}
+                         <img src="{{ home_settings.hologram_image.url }}" alt="Robot Schematic" class="hologram-image">
+                         {% else %}
                          <img src="{% static 'assets/blueprint.png' %}" alt="Robot Schematic" class="hologram-image">
+                         {% endif %}
                          <div class="hologram-glow"></div>
                          <!-- Decorative Data overlay -->
                          <div class="data-point p1"></div>
@@ -221,9 +241,9 @@
     <!-- CTA Section -->
     <section class="section cta-section text-center">
         <div class="container">
-            <h2 class="hero-title" style="font-size: 3rem;">Ready to Build?</h2>
-            <p class="hero-desc" style="margin: 2rem auto;">Join the league of professional builders today.</p>
-            <a href="{% url 'shop' %}" class="btn btn-primary btn-lg">Enter the Arena</a>
+            <h2 class="hero-title" style="font-size: 3rem;">{{ home_settings.cta_title|default:"Ready to Build?" }}</h2>
+            <p class="hero-desc" style="margin: 2rem auto;">{{ home_settings.cta_description|default:"Join the league of professional builders today." }}</p>
+            <a href="{{ home_settings.cta_btn_url|default:'/shop/' }}" class="btn btn-primary btn-lg">{{ home_settings.cta_btn_text|default:"Enter the Arena" }}</a>
         </div>
     </section>
 </main>

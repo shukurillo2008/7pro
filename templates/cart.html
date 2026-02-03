@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Shopping Cart | Robo Arena{% endblock %}
+
+{% block content %}
+<main style="padding-top: 100px;">
+    <section class="section">
+        <div class="container">
+            <h1 class="section-title">Shopping Cart</h1>
+            
+            {% if not cart_items %}
+            <div class="empty-cart text-center" style="padding: 4rem 0;">
+                <i data-feather="shopping-cart" style="width: 64px; height: 64px; color: var(--text-muted);"></i>
+                <h2 style="margin-top: 1rem;">Your cart is empty</h2>
+                <p>Looks like you haven't added any robot parts yet.</p>
+                <a href="{% url 'shop' %}" class="btn btn-primary" style="margin-top: 1.5rem;">Continue Shopping</a>
+            </div>
+            {% else %}
+            
+            <div class="cart-layout" style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; margin-top: 2rem;">
+                
+                <!-- Cart Items Table -->
+                <div class="cart-items">
+                    <div class="bg-card" style="border: 1px solid var(--border-subtle); border-radius: 4px; overflow: hidden;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr style="background: rgba(255,255,255,0.05); text-align: left;">
+                                    <th style="padding: 1rem;">Product</th>
+                                    <th style="padding: 1rem;">Price</th>
+                                    <th style="padding: 1rem;">Quantity</th>
+                                    <th style="padding: 1rem;">Subtotal</th>
+                                    <th style="padding: 1rem;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for cart_item in cart_items %}
+                                <tr style="border-bottom: 1px solid var(--border-subtle);">
+                                    <td style="padding: 1rem;">
+                                        <div style="display: flex; gap: 1rem; align-items: center;">
+                                            <div style="width: 60px; height: 60px; background: #fff; padding: 4px; display: flex; align-items: center; justify-content: center; border-radius: 4px;">
+                                                {% if cart_item.product.primary_image %}
+                                                <img src="{{ cart_item.product.primary_image.image.url }}" alt="{{ cart_item.product.name }}" style="max-height: 100%; width: auto;">
+                                                {% else %}
+                                                <img src="{% static 'assets/motor.png' %}" alt="{{ cart_item.product.name }}" style="max-height: 100%; width: auto;">
+                                                {% endif %}
+                                            </div>
+                                            <div>
+                                                <a href="{{ cart_item.product.get_absolute_url }}" style="font-weight: 600; font-family: var(--font-heading);">{{ cart_item.product.name }}</a>
+                                                <div style="font-size: 0.8rem; color: var(--text-muted);">SKU: {{ cart_item.product.sku }}</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="padding: 1rem; font-family: var(--font-tech);">${{ cart_item.product.price }}</td>
+                                    <td style="padding: 1rem;">
+                                        <div class="quantity-selector" style="display: flex; align-items: center; gap: 0.5rem;">
+                                            <a href="{% url 'remove_cart' cart_item.product.id %}" class="btn-icon" style="background: var(--bg-surface); width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-subtle);">-</a>
+                                            <span style="font-family: var(--font-tech);">{{ cart_item.quantity }}</span>
+                                            <form action="{% url 'add_cart' cart_item.product.id %}" method="POST" style="display: inline;">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn-icon" style="background: var(--bg-surface); width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-subtle); cursor: pointer;">+</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                    <td style="padding: 1rem; font-family: var(--font-tech); color: var(--accent-primary);">${{ cart_item.sub_total }}</td>
+                                    <td style="padding: 1rem;">
+                                        <a href="{% url 'remove_cart_item' cart_item.product.id %}" class="btn-icon" style="color: #ff4444;"><i data-feather="trash-2" style="width: 18px;"></i></a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Cart Summary -->
+                <div class="cart-summary">
+                    <div class="bg-card" style="border: 1px solid var(--border-subtle); border-radius: 4px; padding: 1.5rem;">
+                        <h3 class="product-title" style="margin-bottom: 1rem;">Order Summary</h3>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; color: var(--text-secondary);">
+                            <span>Total Price:</span>
+                            <span style="font-family: var(--font-tech);">${{ total }}</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; color: var(--text-secondary);">
+                            <span>Tax:</span>
+                            <span style="font-family: var(--font-tech);">${{ tax }}</span>
+                        </div>
+                        <div style="height: 1px; background: var(--border-subtle); margin: 1rem 0;"></div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 1.5rem; font-weight: 700;">
+                            <span>Grand Total:</span>
+                            <span style="font-family: var(--font-tech); font-size: 1.25rem; color: var(--accent-primary);">${{ grand_total }}</span>
+                        </div>
+                        
+                        <a href="{% url 'checkout' %}" class="btn btn-primary" style="width: 100%;">Proceed to Checkout</a>
+                        <a href="{% url 'shop' %}" class="btn btn-secondary" style="width: 100%; margin-top: 1rem; text-align: center;">Continue Shopping</a>
+                    </div>
+                </div>
+                
+            </div>
+            {% endif %}
+        </div>
+    </section>
+</main>
+{% endblock %}

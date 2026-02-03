@@ -70,3 +70,21 @@ class ReviewAdmin(admin.ModelAdmin):
     list_display = ['product', 'author', 'rating', 'created_at']
     list_filter = ['rating', 'created_at']
     search_fields = ['author', 'content']
+
+
+from .models import Order, OrderItem
+
+class OrderItemInline(admin.TabularInline):
+    model = OrderItem
+    extra = 0
+    readonly_fields = ['product', 'price', 'quantity']
+    can_delete = False
+
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ['id', 'full_name', 'phone_number', 'status', 'total_price', 'created_at']
+    list_filter = ['status', 'created_at']
+    search_fields = ['full_name', 'phone_number', 'address', 'id']
+    list_editable = ['status']
+    inlines = [OrderItemInline]
+

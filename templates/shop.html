@@ -114,7 +114,7 @@
                             </div>
                             <div class="product-footer">
                                 <span class="price">${{ product.price }}</span>
-                                <a href="{{ product.get_absolute_url }}" class="btn-icon"><i data-feather="shopping-cart"></i></a>
+                                <button class="btn-icon" onclick="addToCart({{ product.id }})"><i data-feather="shopping-cart"></i></button>
                             </div>
                         </div>
                     </div>

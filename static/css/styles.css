@@ -298,6 +298,11 @@ ul { list-style: none; }
 .card:hover .card-image img { transform: scale(1.05); }
 
 .card-content, .product-info { padding: var(--space-8); }
+.product-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
 .card-title, .product-title { margin-bottom: var(--space-2); font-size: 1.25rem; }
 .link-arrow {
   display: inline-flex;
@@ -327,6 +332,7 @@ ul { list-style: none; }
   display: flex;
   gap: 1rem;
   margin-bottom: 1rem;
+  flex-wrap: wrap;
 }
 .tech-spec {
   font-family: var(--font-tech);
